@@ -3,6 +3,7 @@ class User {
   String? firstName;
   String? lastName;
   String password;
+<<<<<<< refs/remotes/origin/main
   String? picture;
   int? role;
   String? phone;
@@ -10,6 +11,15 @@ class User {
   String? ffe;
   List? horsesOwned;
   List? horseDP;
+=======
+  String picture;
+  int role;
+  String phone;
+  int age;
+  String ffe;
+  List horsesOwned;
+  List horseDP;
+>>>>>>> modif int
 
   User({
     required this.mail,
