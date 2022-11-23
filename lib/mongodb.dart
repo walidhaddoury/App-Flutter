@@ -10,7 +10,7 @@ class MongoDatabase {
     inspect(db);
     var status = db.serverStatus();
     print(status);
-    var collection = db.collection(COLLECTION_NAME);
+    var collection = db.collection("Users");
     await collection.insertOne(
         {"username": "mp", "name": "Alexis", "mail": "loic@gmail.com"});
     print(await collection.find().toList());
