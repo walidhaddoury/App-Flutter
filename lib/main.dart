@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'UserModel/login.dart';
 import 'UserModel/register.dart';
 import 'Database/mongodb.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         'register': (context) => const Register(),
+        'login': (context) => const Login(),
       },
       home: const MyHomePage(title: "Home"),
       title: 'Flutter Demo',
@@ -49,6 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'New card',
               onPressed: () {
                 Navigator.of(context).pushNamed('register');
+              }),
+          IconButton(
+              icon: const Icon(Icons.newspaper),
+              tooltip: 'New card',
+              onPressed: () {
+                Navigator.of(context).pushNamed('login');
               }),
         ],
       ),

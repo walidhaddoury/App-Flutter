@@ -26,4 +26,11 @@ class MongoDatabase {
     print("==========REQUETE ADD USER==============");
     await collection.insertOne(newUser);
   }
+
+  static getUser(String mail) async {
+    var collection = db.collection('Users');
+    var userFound = await collection.findOne(where.eq('mail', mail));
+
+    return userFound;
+  }
 }
