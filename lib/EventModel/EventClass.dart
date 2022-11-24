@@ -4,7 +4,7 @@ class Event {
   String owner;
   String location;
   String duration;
-  Date date;
+  String date;
   String discipline;
   String level;
   List pictures;
