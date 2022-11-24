@@ -3,9 +3,9 @@ class Horse {
   String picture;
   String coat;
   String breed;
-  Int gender;
+  int gender;
   String ability;
-  Int age;
+  int age;
   List owner;
   List stable;
   List dp;

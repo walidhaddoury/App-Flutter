@@ -1,26 +1,27 @@
 class User {
   String mail;
-  String firstName;
-  String lastName;
+  String? firstName;
+  String? lastName;
   String password;
-  String picture;
-  Int role;
-  String phone;
-  Int age;
-  String ffe;
-  List horsesOwned;
-  List horseDP;
+  String? picture;
+  int? role;
+  String? phone;
+  int? age;
+  String? ffe;
+  List? horsesOwned;
+  List? horseDP;
 
-  User(
-      this.mail,
-      this.firstName,
-      this.lastName,
-      this.password,
-      this.picture,
-      this.role,
-      this.phone,
-      this.age,
-      this.ffe,
-      this.horsesOwned,
-      this.horseDP);
+  User({
+    required this.mail,
+    this.firstName,
+    this.lastName,
+    required this.password,
+    this.picture,
+    this.role,
+    this.phone,
+    this.age,
+    this.ffe,
+    this.horsesOwned,
+    this.horseDP,
+  });
 }
