@@ -17,13 +17,9 @@ class MongoDatabase {
   }
 
   static createUser(String mail, String password) async {
-    var value = utf8.encode(password);
-    var convertPassword = sha256.convert(value);
-    String passwordHashed = convertPassword.toString();
-
     Map<String, dynamic> newUser = {
       "mail": mail,
-      "password": passwordHashed,
+      "password": password,
     };
 
     var collection = db.collection('Users');
