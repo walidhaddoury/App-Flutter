@@ -1,8 +1,8 @@
 class RegisterToEvent {
-Int idEvent;
-Int idUser;
+int idEvent;
+int idUser;
 String comment;
-Boolean status;
+bool status;
 
 RegisterToEvent(this.idEvent, this.idUser, this.comment, this.status);
 }

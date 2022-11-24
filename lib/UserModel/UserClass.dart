@@ -1,17 +1,19 @@
 class User {
+  //String id;
   String mail;
   String firstName;
   String lastName;
   String password;
   String picture;
-  Int role;
+  int role;
   String phone;
-  Int age;
+  int age;
   String ffe;
   List horsesOwned;
   List horseDP;
 
   User(
+      //this.id,
       this.mail,
       this.firstName,
       this.lastName,

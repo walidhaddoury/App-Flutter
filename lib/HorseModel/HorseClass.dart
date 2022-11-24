@@ -1,15 +1,16 @@
 class Horse {
+  String _id;
   String name;
   String picture;
   String coat;
   String breed;
-  Int gender;
+  int gender;
   String ability;
-  Int age;
+  int age;
   List owner;
   List stable;
   List dp;
 
-  Horse(this.name, this.picture, this.coat, this.breed, this.gender,
+  Horse(this._id, this.name, this.picture, this.coat, this.breed, this.gender,
       this.ability, this.age, this.owner, this.stable, this.dp);
 }

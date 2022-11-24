@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'mongodb.dart';
+import 'feed.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {'feed' :(context)=> const Feed(title: "feed",)},
     );
   }
 }
@@ -66,6 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final ButtonStyle style = TextButton.styleFrom(
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+    );
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -77,6 +83,17 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: <Widget>[
+          TextButton(
+            style: style,
+            onPressed: () {
+              Navigator.of(context).pushNamed('feed');
+            },
+            child: const Text('feed'),
+          )
+        ],
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
