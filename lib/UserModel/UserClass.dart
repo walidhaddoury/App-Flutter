@@ -4,9 +4,9 @@ class User {
   String lastName;
   String password;
   String picture;
-  Int role;
+  int role;
   String phone;
-  Int age;
+  int age;
   String ffe;
   List horsesOwned;
   List horseDP;
