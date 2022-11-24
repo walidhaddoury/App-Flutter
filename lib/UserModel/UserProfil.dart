@@ -76,6 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     user = MongoDatabase.getUserById().then((result) {
       //setState(() {
+      horses = MongoDatabase.listHorses().then((resultHorses) {
+        horses = resultHorses;
+      });
 
       user = result;
       FirstNameController.text = user['firstName'];
@@ -88,9 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
       FFEController.text = user['ffe'];
       // });
 
-      horses = MongoDatabase.listHorses().then((resultHorses) {
-        horses = resultHorses;
-      });
 
       horse = MongoDatabase.getHorse().then((
           resultHorse) {
@@ -102,6 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
         breedHorseController.text = horse["breed"];
         genderHorseController.text = horse["gender"];
       });
+
+
 
     });
 
