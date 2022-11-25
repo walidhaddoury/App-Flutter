@@ -4,7 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
 import 'package:mongo_dart/mongo_dart.dart';
-import 'constant.dart';
+import '../constant.dart';
 import '../UserModel/UserClass.dart';
 
 class MongoDatabase {
