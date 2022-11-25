@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_flutter_pmu/UserModel/UserProfil.dart';
+import 'package:projet_flutter_pmu/UserModel/login.dart';
 
 import '../Database/mongodb.dart';
 import '../NavBar.dart';
@@ -128,13 +129,22 @@ class _RegisterState extends State<Register> {
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text("T'a déja ton compte ?"),
-                        Text(
-                          "Connexion",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext) => Login()));
+                          },
+                          child: Text(
+                            "Connexion",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 18),
+                          ),
                         ),
+
                       ],
                     )
                   ],
