@@ -270,6 +270,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+<<<<<<< HEAD
+  io:
+    dependency: transitive
+    description:
+      name: io
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+=======
   intl:
     dependency: transitive
     description:
@@ -277,6 +286,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+>>>>>>> classes
   js:
     dependency: transitive
     description:

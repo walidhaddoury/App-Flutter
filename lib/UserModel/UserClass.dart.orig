@@ -3,6 +3,15 @@ class User {
   String? firstName;
   String? lastName;
   String password;
+<<<<<<< HEAD
+  String? picture;
+  int? role;
+  String? phone;
+  int? age;
+  String? ffe;
+  List? horsesOwned;
+  List? horseDP;
+=======
   String picture;
   int role;
   String phone;
@@ -10,6 +19,7 @@ class User {
   String ffe;
   List horsesOwned;
   List horseDP;
+>>>>>>> classes
 
   User({
     required this.mail,
