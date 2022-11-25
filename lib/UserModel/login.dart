@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_flutter_pmu/UserModel/UserProfil.dart';
+import 'package:projet_flutter_pmu/UserModel/register.dart';
 
 import '../Database/mongodb.dart';
 import 'UserClass.dart';
@@ -87,6 +89,10 @@ class _Login extends State<Login> {
                             print("===========================VALIDER===========================");
                           }
                         }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserProfil()));
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40)
@@ -100,6 +106,30 @@ class _Login extends State<Login> {
                 const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Vous n\'avez pas encore de compte ? ',
+                      style: TextStyle(
+                          color: Colors.grey, fontStyle: FontStyle.italic),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext) => Register()));
+                      },
+                      child: Text(
+                        'S\'enregistrer',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+                /*Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text("Dont have an account?"),
                     Text("Sign Up",style: TextStyle(
@@ -107,7 +137,7 @@ class _Login extends State<Login> {
                         fontSize: 18
                     ),),
                   ],
-                )
+                )*/
               ],
 
             ),

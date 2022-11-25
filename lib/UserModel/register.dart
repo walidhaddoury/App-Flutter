@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_flutter_pmu/UserModel/UserProfil.dart';
 
 import '../Database/mongodb.dart';
+import '../NavBar.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -32,6 +34,7 @@ class _RegisterState extends State<Register> {
               color: Colors.black,
             )), systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
+      //bottomNavigationBar: generalBottomNavigationBar(context),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -103,6 +106,10 @@ class _RegisterState extends State<Register> {
                             if (passwordController.text == confirmPasswordController.text && (passwordController.text.isNotEmpty) && (mailController.text.isNotEmpty)){
                               await MongoDatabase.createUser(mailController.text, passwordController.text);
                             }
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UserProfil()));
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40)),

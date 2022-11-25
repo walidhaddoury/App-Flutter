@@ -4,6 +4,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_flutter_pmu/UserModel/UserClass.dart';
+
+import '../Database/mongodb.dart';
+import '../NavBar.dart';
+import '../main.dart';
+
+class UserProfil extends StatefulWidget {
+  const UserProfil({super.key});
+  static const tag = "second_page";
+
 import 'package:projet_flutter_pmu/mongodb.dart';
 
 class UserProfil extends StatelessWidget {
@@ -46,6 +55,12 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
+
+  @override
+  State<UserProfil> createState() => _UserProfilState();
+}
+
+class _UserProfilState extends State<UserProfil> {
   final String title;
 
   @override
@@ -107,6 +122,27 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
 
+
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Colors.black,
+            )),
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        /*actions: [
+          IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => (MyHomePage(title: "Bonjour",))));
+        }, icon: Icon(Icons.home)),
+        ],*/
+      ),
+      bottomNavigationBar: generalBottomNavigationBar(context),
 
 
     // This method is rerun every time setState is called, for instance as done
@@ -262,6 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 style: ButtonStyle(
                   foregroundColor:
+                  MaterialStateProperty.all<Color>(Colors.blue),
                       MaterialStateProperty.all<Color>(Colors.blue),
                 ),
                 onPressed: () {

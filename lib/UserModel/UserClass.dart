@@ -11,6 +11,7 @@ class User {
   List horsesOwned;
   List horseDP;
 
+
   User({
     required this.mail,
     this.firstName,

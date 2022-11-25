@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         'register': (context) => const Register(),
         'login': (context) => const Login(),
       },
       home: const MyHomePage(title: "Home"),
-      title: 'Flutter Demo',
+      title: 'PMU',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
