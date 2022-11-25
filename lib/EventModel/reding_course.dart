@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_calendar_widget/flutter_calendar_widget.dart';
 import 'package:projet_flutter_pmu/EventModel/EventClass.dart';
+import 'package:projet_flutter_pmu/UserModel/UserProfil.dart';
 
 import '../Database/mongodb.dart';
 
@@ -240,7 +241,26 @@ class _RidingCoursesState extends State<RidingCourses> {
           print(reservationDate);
           print(reservationTime);*/
             },
-            child: const Text('Submit'),
+            child: //const Text('Submit'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext) => UserProfil()));
+                  },
+                  child: Text(
+                    'Enregistrer',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
           ),
         ]));
   }
