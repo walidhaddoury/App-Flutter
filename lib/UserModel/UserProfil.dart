@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var user;
   var horses;
   var horse;
+  List<String> tabHorses = [];
   var FirstNameController = TextEditingController();
   var LastNameController = TextEditingController();
   var EmailController = TextEditingController();
@@ -75,11 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     user = MongoDatabase.getUserById().then((result) {
-      //setState(() {
-      horses = MongoDatabase.listHorses().then((resultHorses) {
-        horses = resultHorses;
-      });
 
+      //setState(() {
       user = result;
       FirstNameController.text = user['firstName'];
       LastNameController.text = user['lastName'];
@@ -91,21 +89,25 @@ class _MyHomePageState extends State<MyHomePage> {
       FFEController.text = user['ffe'];
       // });
 
-
-      horse = MongoDatabase.getHorse().then((
-          resultHorse) {
-        horse = resultHorse;
-        nameHorseController.text = horse['name'];
-        pictureHorseController.text = horse["picture"];
-        ageHorseController.text = "${user['age']}";
-        coatHorseController.text = horse["coat"];
-        breedHorseController.text = horse["breed"];
-        genderHorseController.text = horse["gender"];
-      });
-
-
-
     });
+    horse = MongoDatabase.getHorse().then((resultHorse) {
+      horse = resultHorse;
+      nameHorseController.text = horse['name'];
+      pictureHorseController.text = horse["picture"];
+      ageHorseController.text = "${user['age']}";
+      coatHorseController.text = horse["coat"];
+      breedHorseController.text = horse["breed"];
+      genderHorseController.text = horse["gender"];
+    });
+
+
+    setState(() {
+      horses = MongoDatabase.listHorses().then((resultHorses) {
+        horses = resultHorses;
+      });
+    });
+
+
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -182,8 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   labelText: 'FFE',
                   icon: Icon(Icons.http),
                 )),
-
-            Expanded(
+           /* Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -212,14 +213,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                itemCount: horses.length,
+                itemCount: 2,
               ),
-            ),
+            ),*/
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {},
+              onPressed: () {
+                MongoDatabase.updateUserById(FirstNameController.text, LastNameController.text, EmailController.text, PasswordController.text, int.parse(AgeController.text), PhoneController.text, PictureController.text, FFEController.text);
+              },
               child: Text('Modifié'),
             ),
           ],
@@ -229,56 +232,69 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   popupHorse(int index) {
-    AlertDialog alert = AlertDialog(
-        title: Text(horses[index]["name"]),
-        content: Column(
-          children: [
-            TextFormField(
-              controller: nameHorseController,
-            ),
-            TextFormField(
-              controller: pictureHorseController,
-            ),
-            TextFormField(
-              controller: ageHorseController,
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-            ),
-            TextFormField(
-              controller: coatHorseController,
-            ),
-            TextFormField(
-              controller: breedHorseController,
-            ),
-            TextFormField(
-              controller: genderHorseController,
-            ),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+    if (horses[index]["owners"] == EmailController) {
+      AlertDialog alert = AlertDialog(
+          title: Text(horses[index]["name"]),
+          content: Column(
+            children: [
+              TextFormField(
+                controller: nameHorseController,
               ),
-              onPressed: () {
-                MongoDatabase.updateHorse(
-                  horse[index]["name"],
-                  nameHorseController.text,
-                  pictureHorseController.text,
-                  int.parse(ageHorseController.text),
-                  coatHorseController.text,
-                  breedHorseController.text,
-                  genderHorseController.text,
-                );
-              },
-              child: Text('Modifié'),
-            ),
-          ],
-        ));
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+              TextFormField(
+                controller: pictureHorseController,
+              ),
+              TextFormField(
+                controller: ageHorseController,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+              ),
+              TextFormField(
+                controller: coatHorseController,
+              ),
+              TextFormField(
+                controller: breedHorseController,
+              ),
+              TextFormField(
+                controller: genderHorseController,
+              ),
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
+                onPressed: () {
+                  MongoDatabase.updateHorse(
+                    horse[index]["name"],
+                    nameHorseController.text,
+                    pictureHorseController.text,
+                    int.parse(ageHorseController.text),
+                    coatHorseController.text,
+                    breedHorseController.text,
+                    genderHorseController.text,
+                  );
+                },
+                child: Text('Modifié'),
+              ),
+            ],
+          ));
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    } else {
+      AlertDialog alert = AlertDialog(
+        title: Text(horses[index]["name"]),
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
   }
 }
