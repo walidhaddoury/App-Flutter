@@ -1,42 +1,37 @@
 import 'dart:developer';
 
 import 'package:mongo_dart/mongo_dart.dart';
-import '../UserModel/UserClass.dart';
-
 import 'constant.dart';
 
-var horseCollection;
+
 var userCollection;
+var horseCollection;
 var EventCollection;
 
 class MongoDatabase {
-  static var db;
-
   static connect() async {
-    db = await Db.create(MONGO_URL);
+    var db = await Db.create(MONGO_URL);
+
     userCollection = db.collection(COLLECTION_NAME);
     horseCollection = db.collection(COLLECTION_HORSE);
+ 
     EventCollection = db.collection(COLLECTION_EVENT);
     await db.open();
     inspect(db);
-  }
-
-  static createUser(String mail, String password) async {
-    Map<String, dynamic> newUser = {
-      "mail": mail,
-      "password": password,
-    };
-
-    var collection = db.collection('Users');
-    print("==========REQUETE ADD USER==============");
-    await collection.insertOne(newUser);
-  }
-
-  static getUser(String mail) async {
-    var collection = db.collection('Users');
-    var userFound = await collection.findOne(where.eq('mail', mail));
-
-    return userFound;
+    var status = db.serverStatus();
+    print(status);
+    
+/*    var collection = db.collection("Horses");
+    await collection.insertOne({
+      "name": "Petit Poney",
+      "picture": "picture",
+      "age": 2,
+      "coat": "rayé",
+      "breed": "moitié australien, moitié africain",
+      "gendre": "femelle",
+      "owners": ["loic@mail.com", "walid@mail.com"],
+    });*/
+    //print(await collection.find().toList());
   }
 
   static getUserById() async {
@@ -86,6 +81,20 @@ class MongoDatabase {
 
   }
 
+
+  static getAllEvents() async {
+    var events = await eventCollection.find().toList();
+    return events;
+  }
+}
+
+    /*var collection = db.collection("Users");
+    await collection.insertOne(
+        {"username": "mp", "name": "Alexis", "mail": "loic@gmail.com"});
+    print(await collection.find().toList()
+    );
+    print(collection);*/
+  }
   static updateEvent(String Name, List Ground, List Discipline, List Duration, DateTime reservationDate, String reservationTime) async {
     var Event = await EventCollection.insertOne({
       "Name": Name,
@@ -94,7 +103,6 @@ class MongoDatabase {
       "Duration": Duration,
       "reservationDate": reservationDate,
       "reservationTime": reservationTime});
-    print(Event);
-    return Event;
-  }
-}
+print(Event);
+  return Event;
+}}
