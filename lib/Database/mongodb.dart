@@ -5,6 +5,7 @@ import 'constant.dart';
 
 var horseCollection;
 var userCollection;
+var EventCollection;
 
 class MongoDatabase {
   static var db;
@@ -13,6 +14,7 @@ class MongoDatabase {
     db = await Db.create(MONGO_URL);
     userCollection = db.collection(COLLECTION_NAME);
     horseCollection = db.collection(COLLECTION_HORSE);
+    EventCollection = db.collection(COLLECTION_EVENT);
     await db.open();
     inspect(db);
   }
@@ -80,5 +82,17 @@ class MongoDatabase {
     await userCollection.updateMany(where.eq("name", nameForId), modify.set("breed", breed));
     await userCollection.updateMany(where.eq("name", nameForId), modify.set("gender", gender));
 
+  }
+
+  static updateEvent(String Name, List Ground, List Discipline, List Duration, DateTime reservationDate, String reservationTime) async {
+    var Event = await EventCollection.insertOne({
+      "Name": Name,
+      "Ground": Ground,
+      "Discipline": Discipline,
+      "Duration": Duration,
+      "reservationDate": reservationDate,
+      "reservationTime": reservationTime});
+    print(Event);
+    return Event;
   }
 }

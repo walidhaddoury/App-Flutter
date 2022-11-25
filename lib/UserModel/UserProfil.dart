@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:projet_flutter_pmu/UserModel/UserClass.dart';
 
 import '../Database/mongodb.dart';
+import '../NavBar.dart';
+import '../main.dart';
 
 class UserProfil extends StatefulWidget {
   const UserProfil({super.key});
@@ -80,6 +82,25 @@ class _UserProfilState extends State<UserProfil> {
     });
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Colors.black,
+            )),
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        /*actions: [
+          IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => (MyHomePage(title: "Bonjour",))));
+        }, icon: Icon(Icons.home)),
+        ],*/
+      ),
+      bottomNavigationBar: generalBottomNavigationBar(context),
       body: Form(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

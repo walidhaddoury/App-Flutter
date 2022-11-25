@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_flutter_pmu/UserModel/UserProfil.dart';
 
 import '../Database/mongodb.dart';
 import 'UserClass.dart';
@@ -87,6 +88,10 @@ class _Login extends State<Login> {
                             print("===========================VALIDER===========================");
                           }
                         }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserProfil()));
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40)
