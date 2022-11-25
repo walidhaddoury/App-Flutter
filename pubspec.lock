@@ -280,10 +280,10 @@ packages:
   io:
     dependency: transitive
     description:
-      name: intl
+      name: io
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0"
+    version: "1.0.3"
   js:
     dependency: transitive
     description:

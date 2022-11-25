@@ -13,7 +13,7 @@ class MongoDatabase {
     var db = await Db.create(MONGO_URL);
 
     userCollection = db.collection(COLLECTION_NAME);
-    horseCollection = db.collection(COLLECTION_HORSE);
+    //horseCollection = db.collection(COLLECTION_HORSE);
  
     EventCollection = db.collection(COLLECTION_EVENT);
     await db.open();
@@ -83,7 +83,7 @@ class MongoDatabase {
 
 
   static getAllEvents() async {
-    var events = await eventCollection.find().toList();
+    var events = await EventCollection.find().toList();
     return events;
   }
 }
@@ -93,9 +93,9 @@ class MongoDatabase {
         {"username": "mp", "name": "Alexis", "mail": "loic@gmail.com"});
     print(await collection.find().toList()
     );
-    print(collection);*/
-  }
-  static updateEvent(String Name, List Ground, List Discipline, List Duration, DateTime reservationDate, String reservationTime) async {
+    print(collection);
+  }*/
+   updateEvent(String Name, List Ground, List Discipline, List Duration, DateTime reservationDate, String reservationTime) async {
     var Event = await EventCollection.insertOne({
       "Name": Name,
       "Ground": Ground,
@@ -105,4 +105,4 @@ class MongoDatabase {
       "reservationTime": reservationTime});
 print(Event);
   return Event;
-}}
+}

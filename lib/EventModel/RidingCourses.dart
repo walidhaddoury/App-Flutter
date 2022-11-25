@@ -18,7 +18,7 @@ class Course extends Event {
   String reservationTime;
   Course(this.Ground, this.Discipline, this.Duration, this.reservationDate,
       this.reservationTime)
-      : super('', [], '', '', '', DateTime.now(), '', '', []);
+      : super('', [], '', '', '', '', '', '', []);
 }
 
 var NameController = TextEditingController();

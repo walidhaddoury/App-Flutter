@@ -3,13 +3,13 @@ class User {
   String? firstName;
   String? lastName;
   String password;
-  String picture;
-  int role;
-  String phone;
-  int age;
-  String ffe;
-  List horsesOwned;
-  List horseDP;
+  String? picture;
+  int? role;
+  String? phone;
+  int? age;
+  String? ffe;
+  List? horsesOwned;
+  List? horseDP;
 
 
   User({
